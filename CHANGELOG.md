@@ -6,6 +6,7 @@
 * Implement dynamic party claim limits based on member count, closes #173 closes #75 - KingJorjai
 * Updated to latest release, closes #200
 * Replaced the "Replace" interaction with a custom one to protect stuff like sickles from breaking crops
+* Replaced the "ChangeBlock" interaction with a custom one to protect stuff like hoes from tilling dirt, closes #174
 
 # 1.0.28
 

@@ -4,37 +4,42 @@ import com.buuz135.simpleclaims.claim.ClaimManager;
 import com.buuz135.simpleclaims.claim.party.PartyInfo;
 import com.buuz135.simpleclaims.claim.party.PartyOverrides;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
+import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.math.vector.Vector3i;
 import com.hypixel.hytale.protocol.InteractionState;
 import com.hypixel.hytale.protocol.InteractionType;
 import com.hypixel.hytale.server.core.entity.InteractionContext;
 import com.hypixel.hytale.server.core.entity.InteractionManager;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler;
-import com.hypixel.hytale.server.core.modules.interaction.interaction.config.none.ReplaceInteraction;
-import com.hypixel.hytale.server.core.modules.interaction.interaction.config.server.RefillContainerInteraction;
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.client.ChangeBlockInteraction;
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.client.SimpleBlockInteraction;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
-public class ClaimReplaceInteraction extends ReplaceInteraction {
+public class ClaimChangeBlockInteraction extends ChangeBlockInteraction {
 
-    public static final BuilderCodec<ClaimReplaceInteraction> CUSTOM_CODEC = BuilderCodec.builder(ClaimReplaceInteraction.class, ClaimReplaceInteraction::new, ReplaceInteraction.CODEC).build();
-
+    public static final BuilderCodec<ClaimChangeBlockInteraction> CUSTOM_CODEC = BuilderCodec.builder(ClaimChangeBlockInteraction.class, ClaimChangeBlockInteraction::new, ChangeBlockInteraction.CODEC).build();
 
     @Override
-    protected void tick0(boolean firstRun, float time, @NotNull InteractionType type, @NotNull InteractionContext context, @NotNull CooldownHandler cooldownHandler) {
+    protected void interactWithBlock(@NonNullDecl World world, @NonNullDecl CommandBuffer<EntityStore> commandBuffer, @NonNullDecl InteractionType type, @NonNullDecl InteractionContext context, @NullableDecl ItemStack heldItemStack, @NonNullDecl Vector3i targetBlock, @NonNullDecl CooldownHandler cooldownHandler) {
         Ref<EntityStore> ref = context.getEntity();
         Store<EntityStore> store = ref.getStore();
         Player player = store.getComponent(ref, Player.getComponentType());
         PlayerRef playerRef = store.getComponent(ref, PlayerRef.getComponentType());
         Predicate<PartyInfo> defaultInteract = PartyInfo::isBlockBreakEnabled;
-        var targetBlock = context.getTargetBlock();
-        if (playerRef != null && ClaimManager.getInstance().isAllowedToInteract(playerRef.getUuid(), player.getWorld().getName(), targetBlock.x, targetBlock.z, defaultInteract, PartyOverrides.PARTY_PROTECTION_BREAK_BLOCKS)) {
-            super.tick0(firstRun, time, type, context, cooldownHandler);
+        if (playerRef != null && ClaimManager.getInstance().isAllowedToInteract(playerRef.getUuid(), player.getWorld().getName(), targetBlock.getX(), targetBlock.getZ(), defaultInteract, PartyOverrides.PARTY_PROTECTION_BREAK_BLOCKS)) {
+            super.interactWithBlock(world, commandBuffer, type, context, heldItemStack, targetBlock, cooldownHandler);
         } else {
             context.getState().state = InteractionState.Failed;
             InteractionManager manager = context.getInteractionManager();
@@ -42,18 +47,18 @@ public class ClaimReplaceInteraction extends ReplaceInteraction {
                 manager.cancelChains(context.getChain());
             }
         }
+
     }
 
     @Override
-    protected void simulateTick0(boolean firstRun, float time, @NotNull InteractionType type, @NotNull InteractionContext context, @NotNull CooldownHandler cooldownHandler) {
+    protected void simulateInteractWithBlock(@NonNullDecl InteractionType type, @NonNullDecl InteractionContext context, @NullableDecl ItemStack itemInHand, @NonNullDecl World world, @NonNullDecl Vector3i targetBlock) {
         Ref<EntityStore> ref = context.getEntity();
         Store<EntityStore> store = ref.getStore();
         Player player = store.getComponent(ref, Player.getComponentType());
         PlayerRef playerRef = store.getComponent(ref, PlayerRef.getComponentType());
         Predicate<PartyInfo> defaultInteract = PartyInfo::isBlockBreakEnabled;
-        var targetBlock = context.getTargetBlock();
-        if (playerRef != null && ClaimManager.getInstance().isAllowedToInteract(playerRef.getUuid(), player.getWorld().getName(), targetBlock.x, targetBlock.z, defaultInteract, PartyOverrides.PARTY_PROTECTION_BREAK_BLOCKS)) {
-            super.simulateTick0(firstRun, time, type, context, cooldownHandler);
+        if (playerRef != null && ClaimManager.getInstance().isAllowedToInteract(playerRef.getUuid(), player.getWorld().getName(), targetBlock.getX(), targetBlock.getZ(), defaultInteract, PartyOverrides.PARTY_PROTECTION_BREAK_BLOCKS)) {
+            super.simulateInteractWithBlock(type, context, itemInHand, world, targetBlock);
         } else {
             context.getState().state = InteractionState.Failed;
             InteractionManager manager = context.getInteractionManager();
