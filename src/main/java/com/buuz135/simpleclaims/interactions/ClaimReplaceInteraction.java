@@ -41,7 +41,7 @@ public class ClaimReplaceInteraction extends ReplaceInteraction {
                 targetBlock = new BlockPosition((int) playerPos.x, (int) playerPos.y, (int) playerPos.z);
             }
             if (player != null && player.getWorld() != null && ClaimManager.getInstance().isAllowedToInteract(playerRef.getUuid(), player.getWorld().getName(), targetBlock.x, targetBlock.z, defaultInteract, PartyOverrides.PARTY_PROTECTION_BREAK_BLOCKS)) {
-
+                super.tick0(firstRun, time, type, context, cooldownHandler);
             } else {
                 context.getState().state = InteractionState.Failed;
                 InteractionManager manager = context.getInteractionManager();
