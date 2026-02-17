@@ -1,0 +1,22 @@
+$C = "../Common.ui";
+
+
+
+Group {
+   LayoutMode: Top;
+   Anchor: (Height: 300, Top: 0);
+
+     $C.@TextButton #EditPartyButton {
+          Anchor: (Right: 10);
+          Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+          Text: "Edit Party";
+          Overscroll: false;
+     }
+
+       $C.@TextButton #EditPartyButton {
+            Anchor: (Right: 10, Top: 20);
+            Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+            Text: "Edit Party 2";
+            Overscroll: false;
+       }
+}

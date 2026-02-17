@@ -6,6 +6,7 @@ import com.buuz135.simpleclaims.commands.SimpleClaimProtectCommand;
 import com.buuz135.simpleclaims.commands.SimpleClaimsPartyCommand;
 import com.buuz135.simpleclaims.config.SimpleClaimsConfig;
 import com.buuz135.simpleclaims.interactions.*;
+import com.buuz135.simpleclaims.map.CustomMapHudUI;
 import com.buuz135.simpleclaims.map.SimpleClaimsWorldMapProvider;
 import com.buuz135.simpleclaims.papi.PAPIIntegration;
 import com.buuz135.simpleclaims.systems.events.*;
@@ -13,6 +14,8 @@ import com.buuz135.simpleclaims.systems.tick.*;
 import com.buuz135.simpleclaims.util.PartyInactivityThread;
 import com.buuz135.simpleclaims.util.WindowExtraResourcesState;
 import com.buuz135.simpleclaims.util.WindowPacketAdapters;
+import com.hypixel.hytale.builtin.creativehub.CreativeHubPlugin;
+import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.player.AddPlayerToWorldEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
@@ -22,6 +25,7 @@ import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.events.AddWorldEvent;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.universe.world.worldmap.provider.IWorldMapProvider;
 import com.hypixel.hytale.server.core.universe.world.worldmap.provider.chunk.WorldGenWorldMapProvider;
 import com.hypixel.hytale.server.core.util.Config;
@@ -114,6 +118,15 @@ public class Main extends JavaPlugin {
 
         partyInactivityTickingSystem = new PartyInactivityThread();
         partyInactivityTickingSystem.start();
+
+        CustomMapHudUI.register();
+        this.getEventRegistry().registerGlobal(AddPlayerToWorldEvent.class, (event) -> {
+            Holder<EntityStore> holder = event.getHolder();
+            PlayerRef playerRef = holder.getComponent(PlayerRef.getComponentType());
+            if (playerRef != null) {
+                CustomMapHudUI.send(playerRef, false);
+            }
+        });
     }
 
     @Override
