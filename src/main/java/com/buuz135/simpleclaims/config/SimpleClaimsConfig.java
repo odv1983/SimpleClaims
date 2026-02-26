@@ -52,7 +52,6 @@ public class SimpleClaimsConfig {
     private boolean EnableAdjacentChunkRestriction = false;
     private boolean EnablePerimeterReservation = false;
     private boolean ShowPerimeterReservationOnTheMap = false;
-    private String Language = "en-US";
 
     private String[] BlocksThatIgnoreInteractRestrictions = new String[]{"gravestone"};
 
@@ -247,9 +246,4 @@ public class SimpleClaimsConfig {
     public boolean isShowPerimeterReservationOnTheMap() {
         return ShowPerimeterReservationOnTheMap;
     }
-
-    public String getLanguage() {
-        return Language;
-    }
-
 }

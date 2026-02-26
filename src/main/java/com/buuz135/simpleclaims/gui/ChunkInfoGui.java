@@ -150,7 +150,7 @@ public class ChunkInfoGui extends InteractiveCustomUIPage<ChunkInfoGui.ChunkInfo
     public void build(@NonNullDecl Ref<EntityStore> ref, @NonNullDecl UICommandBuilder uiCommandBuilder, @NonNullDecl UIEventBuilder uiEventBuilder, @NonNullDecl Store<EntityStore> store) {
         uiCommandBuilder.append("Pages/Buuz135_SimpleClaims_ChunkVisualizer.ui");
         if (isOp) {
-            uiCommandBuilder.set("#TitleText.Text", TranslationHelper.rawTextOrEnglish("ui.simpleclaims.chunk.adminModeTitle", "ui.simpleclaims.chunk.adminModeTitle"));
+            uiCommandBuilder.set("#TitleText.Text", TranslationHelper.rawTextOrEnglish("ui.simpleclaims.chunk.adminModeTitle", this.playerRef));
         }
         var player = store.getComponent(ref, PlayerRef.getComponentType());
         var playerParty = ClaimManager.getInstance().getPartyFromPlayer(player.getUuid());

@@ -10,7 +10,7 @@ $C.@PageOverlay {
       TextButton #BackButton {
         Anchor: (Left: 12, Top: 4, Width: 64, Height: 24);
         Padding: (Left: 8, Top: 2);
-        Text: %ui.ui.simpleclaims.party.back;
+        Text: %ui.simpleclaims.party.back;
         Style: TextButtonStyle(
           Default: (LabelStyle: (FontSize: 14, TextColor: #93844c, RenderBold: true)),
           Sounds: $C.@ButtonSounds,
@@ -20,7 +20,7 @@ $C.@PageOverlay {
 
       Group {
         $C.@Title #TitleText{
-          @Text = %ui.ui.simpleclaims.party.interactionSettings;
+          @Text = %ui.simpleclaims.party.interactionSettings;
         }
 
       }
@@ -33,27 +33,27 @@ $C.@PageOverlay {
         LayoutMode: Top;
         Padding: (Left: 40);
           $C.@CheckBoxWithLabel #InteractBlocksSetting {
-            @Text = %ui.ui.simpleclaims.party.allowBlockInteraction;
+            @Text = %ui.simpleclaims.party.allowBlockInteraction;
             Padding: (Bottom: 4);
           }
           $C.@CheckBoxWithLabel #InteractChestSetting {
-            @Text = %ui.ui.simpleclaims.party.allowChestInteraction;
+            @Text = %ui.simpleclaims.party.allowChestInteraction;
             Padding: (Bottom: 4);
           }
           $C.@CheckBoxWithLabel #InteractDoorSetting {
-            @Text = %ui.ui.simpleclaims.party.allowDoorInteraction;
+            @Text = %ui.simpleclaims.party.allowDoorInteraction;
             Padding: (Bottom: 4);
           }
           $C.@CheckBoxWithLabel #InteractBenchSetting {
-            @Text = %ui.ui.simpleclaims.party.allowBenchInteraction;
+            @Text = %ui.simpleclaims.party.allowBenchInteraction;
             Padding: (Bottom: 4);
           }
           $C.@CheckBoxWithLabel #InteractChairSetting {
-            @Text = %ui.ui.simpleclaims.party.allowChairInteraction;
+            @Text = %ui.simpleclaims.party.allowChairInteraction;
             Padding: (Bottom: 4);
           }
           $C.@CheckBoxWithLabel #InteractPortalSetting {
-            @Text = %ui.ui.simpleclaims.party.allowPortalInteraction;
+            @Text = %ui.simpleclaims.party.allowPortalInteraction;
             Padding: (Bottom: 4);
           }
       }

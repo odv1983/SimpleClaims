@@ -109,7 +109,7 @@ public class ChunkListGui extends GuiWithParent<ChunkListGui.ChunkListGuiData> {
                     uiEventBuilder.addEventBinding(CustomUIEventBindingType.Activating, "#ClaimsCards[" + i + "] #TeleportButton", EventData.of("Action", "Teleport").append("ChunkId", world + ":" + value.getCoordinates()), false);
                 }
                 if (this.requestingConfirmation.equals(world + ":" + value.getCoordinates())) {
-                    uiCommandBuilder.set("#ClaimsCards[" + i + "] #UnclaimButton.Text", TranslationHelper.rawTextOrEnglish("ui.simpleclaims.common.areYouSure", "ui.simpleclaims.common.areYouSure"));
+                    uiCommandBuilder.set("#ClaimsCards[" + i + "] #UnclaimButton.Text", TranslationHelper.rawTextOrEnglish("ui.simpleclaims.common.areYouSure", this.playerRef));
                     uiEventBuilder.addEventBinding(CustomUIEventBindingType.Activating, "#ClaimsCards[" + i + "] #UnclaimButton", EventData.of("RemoveButtonAction", "Delete").append("ChunkId", world + ":" + value.getCoordinates()), false);
                     uiEventBuilder.addEventBinding(CustomUIEventBindingType.MouseExited, "#ClaimsCards[" + i + "] #UnclaimButton", EventData.of("RemoveButtonAction", "Click").append("ChunkId", world + ":" + value.getCoordinates()), false);
                 } else {
