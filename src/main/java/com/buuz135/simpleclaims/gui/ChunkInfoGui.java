@@ -166,7 +166,7 @@ public class ChunkInfoGui extends InteractiveCustomUIPage<ChunkInfoGui.ChunkInfo
             canPlayerClaim = true;
         }
 
-        uiCommandBuilder.set("#ClaimedChunksInfo #ClaimedChunksCount.Text", ClaimManager.getInstance().getAmountOfClaims(playerParty)+ "");
+        uiCommandBuilder.set("#ClaimedChunksInfo #ClaimedChunksCount.Text", " " + ClaimManager.getInstance().getAmountOfClaims(playerParty) + "");
         uiCommandBuilder.set("#ClaimedChunksInfo #MaxChunksCount.Text", playerParty.getMaxClaimAmount() + "");
 
         if (this.mapAsset == null && Main.CONFIG.get().isRenderMapInClaimUI()) {
@@ -206,9 +206,9 @@ public class ChunkInfoGui extends InteractiveCustomUIPage<ChunkInfoGui.ChunkInfo
                         uiCommandBuilder.set("#ChunkCards[" + z + "][" + x + "].OutlineSize", 1);
                         var tooltip = MessageHelper.multiLine()
                                 .append(Message.translation("ui.simpleclaims.chunk.owner").bold(true).color(hytaleGold))
-                                .append(Message.raw(partyInfo.getName())).nl()
+                                .append(Message.raw(" " + partyInfo.getName())).nl()
                                 .append(Message.translation("ui.simpleclaims.chunk.description").bold(true).color(hytaleGold))
-                                .append(Message.raw(partyInfo.getDescription()));
+                                .append(Message.raw(" " + partyInfo.getDescription()));
                         if (playerParty != null && playerParty.getId().equals(partyInfo.getId()) && canPlayerClaim) {
                             tooltip = tooltip.nl().nl().append(Message.translation("ui.simpleclaims.chunk.rightClickUnclaim").bold(true).color(Color.RED.darker().darker()));
                         }

@@ -298,7 +298,7 @@ public class PartyInfoEditGui extends InteractiveCustomUIPage<PartyInfoEditGui.P
         for (UUID uuid : this.info.getPlayerAllies()) {
             uiCommandBuilder.append("#MemberEntries", "Pages/Buuz135_SimpleClaims_PartyMemberListEntry.ui");
             uiCommandBuilder.set("#MemberEntries[" + i + "] #MemberName.Text", ClaimManager.getInstance().getPlayerNameTracker().getPlayerName(uuid));
-            uiCommandBuilder.set("#MemberEntries[" + i + "] #MemberRole.Text", TranslationHelper.rawTextOrEnglish("ui.simpleclaims.party.playerAlly", this.playerRef));
+            uiCommandBuilder.set("#MemberEntries[" + i + "] #MemberRole.Text", "  " + TranslationHelper.rawTextOrEnglish("ui.simpleclaims.party.playerAlly", this.playerRef) + "  ");
 
             uiCommandBuilder.set("#MemberEntries[" + i + "] #MemberRole.Background.Color", "#5ab44e83");
             uiCommandBuilder.set("#MemberEntries[" + i + "] #MemberRole.OutlineColor", "#5ab44ede");
@@ -393,7 +393,7 @@ public class PartyInfoEditGui extends InteractiveCustomUIPage<PartyInfoEditGui.P
         uiCommandBuilder.set("#ClaimColorPickerGroup #ClaimColorPicker.Value", String.format("#%06X", (0xFFFFFF & this.info.getColor())));
         //uiCommandBuilder.set("#ClaimColorPickerGroup #ClaimColorPicker.IsReadOnly", !playerCanModify);
 
-        uiCommandBuilder.set("#ClaimedChunksInfo #ClaimedChunksCount.Text", ClaimManager.getInstance().getAmountOfClaims(this.info)+ "");
+        uiCommandBuilder.set("#ClaimedChunksInfo #ClaimedChunksCount.Text", " " + ClaimManager.getInstance().getAmountOfClaims(this.info) + "");
         uiCommandBuilder.set("#ClaimedChunksInfo #MaxChunksCount.Text",this.info.getMaxClaimAmount() + "");
 
         uiEventBuilder.addEventBinding(CustomUIEventBindingType.ValueChanged, "#ClaimColorPicker", EventData.of("@ClaimColor", "#ClaimColorPicker.Value"), false);
