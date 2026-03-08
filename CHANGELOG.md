@@ -2,6 +2,7 @@
 
 * Add UI translations + Italian translation - Lumengrid
 * Removed title showing in blacklisted worlds, closes #220
+* Fixed crash for specific block interactions, closes #210
 
 # 1.0.31
 
