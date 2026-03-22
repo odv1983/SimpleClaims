@@ -1,3 +1,7 @@
+# 1.0.33
+
+* Updated to Hytale Update 4
+
 # 1.0.32
 
 * Add UI translations + Italian translation - Lumengrid
