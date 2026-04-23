@@ -38,3 +38,4 @@ simpleclaims.deactivatedPartyChat = O chat da party está desativado
 simpleclaims.playerActivatedPartyChat = {player} ativou o chat da party
 simpleclaims.playerDeactivatedPartyChat = {player} desativou o chat da party
 simpleclaims.partyTag = [PARTY]
+simpleclaims.waitingOpenWindow = Aguarde a abertura da janela...

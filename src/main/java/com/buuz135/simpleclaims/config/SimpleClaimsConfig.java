@@ -1,6 +1,8 @@
 package com.buuz135.simpleclaims.config;
 
 
+import dev.unnm3d.codeclib.config.FieldName;
+
 public class SimpleClaimsConfig {
 
     private String[] PartyCommandAliases = new String[]{"scp", "sc-party", "party"};
@@ -46,6 +48,10 @@ public class SimpleClaimsConfig {
     private boolean EnableParticleBorders = true;
     private boolean RenderClaimNamesOnWorldMap = false;
     private boolean RenderMapInClaimUI = true;
+    @FieldName("ClaimUIMapCacheTtlSeconds")
+    private int ClaimUIMapCacheTtlSeconds = 10; // 0 disables cache
+    @FieldName("ClaimUIMapResolutionScale")
+    private float ClaimUIMapResolutionScale = 1.0f; // 1.0 = default resolution
 
     private boolean ForceSimpleClaimsChunkWorldMap = true;
     private boolean CreativeModeBypassProtection = false;
@@ -221,6 +227,14 @@ public class SimpleClaimsConfig {
 
     public boolean isRenderMapInClaimUI() {
         return RenderMapInClaimUI;
+    }
+
+    public int getClaimUIMapCacheTtlSeconds() {
+        return ClaimUIMapCacheTtlSeconds;
+    }
+
+    public float getClaimUIMapResolutionScale() {
+        return ClaimUIMapResolutionScale;
     }
 
     public boolean isNotifyPartyChatToggling() {
