@@ -1,3 +1,8 @@
+# 1.0.35
+
+* Added some store safety checks for the crafting system
+* Fixed text rendering on the map, closes #231
+
 # 1.0.34
 
 * Fixed workbenches not consuming items properly (with the help of oskar)

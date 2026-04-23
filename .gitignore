@@ -2,7 +2,6 @@
 
 .gradle
 build/
-libs/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -53,3 +52,6 @@ bin/
 .DS_Store
 
 run/
+
+# HytaleServer
+/libs/HytaleServer.jar

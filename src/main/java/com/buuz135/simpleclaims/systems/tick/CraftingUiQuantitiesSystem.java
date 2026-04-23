@@ -45,6 +45,7 @@ public class CraftingUiQuantitiesSystem extends EntityTickingSystem<EntityStore>
 
     @Override
     public void tick(float dt, int index, ArchetypeChunk<EntityStore> chunk, Store<EntityStore> store, CommandBuffer<EntityStore> commandBuffer) {
+        if (store.isProcessing()) return;
         Ref<EntityStore> ref = chunk.getReferenceTo(index);
         if (!ref.isValid()) return;
 
