@@ -24,6 +24,7 @@ public class SimpleClaimsConfig {
     private boolean DefaultPartyInteractBench = false;
     private boolean DefaultPartyInteractChair = false;
     private boolean DefaultPartyInteractPortal = false;
+    private boolean DefaultPartyTamedDamageEnabled = false;
 
     private boolean AllowPartyPVPSetting = true;
     private boolean AllowPartyFriendlyFireSetting = true;
@@ -36,6 +37,7 @@ public class SimpleClaimsConfig {
     private boolean AllowPartyInteractBenchSetting = true;
     private boolean AllowPartyInteractChairSetting = true;
     private boolean AllowPartyInteractPortalSetting = true;
+    private boolean AllowPartyTamedDamageSetting = true;
 
     private String[] ClaimCommandAliases = new String[]{"sc", "sc-chunks", "scc", "chunk", "chunks", "claim", "claims"};
     private String[] WorldNameBlacklistForClaiming = new String[0];
@@ -191,8 +193,16 @@ public class SimpleClaimsConfig {
         return DefaultPartyInteractPortal;
     }
 
+    public boolean isDefaultPartyTamedDamageEnabled() {
+        return DefaultPartyTamedDamageEnabled;
+    }
+
     public boolean isAllowPartyInteractPortalSetting() {
         return AllowPartyInteractPortalSetting;
+    }
+
+    public boolean isAllowPartyTamedDamageSetting() {
+        return AllowPartyTamedDamageSetting;
     }
 
     public boolean isEnableParticleBorders() {

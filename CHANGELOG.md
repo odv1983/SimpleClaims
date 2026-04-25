@@ -1,3 +1,8 @@
+# 1.0.36
+
+* Added tamed entity damage event system to prevent tamed entities from being damaged in claimed chunks (with party
+  settings), closes #208 closes #121 closes #236 closes #232
+
 # 1.0.35
 
 * Added some store safety checks for the crafting system
