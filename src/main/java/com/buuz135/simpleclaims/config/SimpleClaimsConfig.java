@@ -48,6 +48,8 @@ public class SimpleClaimsConfig {
     private boolean EnableParticleBorders = true;
     private boolean RenderClaimNamesOnWorldMap = false;
     private boolean RenderMapInClaimUI = true;
+    private int ClaimUIMapCacheTtlSeconds = 10; // 0 disables cache
+    private float ClaimUIMapResolutionScale = 1.0f;
 
     private boolean ForceSimpleClaimsChunkWorldMap = true;
     private boolean CreativeModeBypassProtection = false;
@@ -255,5 +257,13 @@ public class SimpleClaimsConfig {
 
     public boolean isShowPerimeterReservationOnTheMap() {
         return ShowPerimeterReservationOnTheMap;
+    }
+
+    public int getClaimUIMapCacheTtlSeconds() {
+        return ClaimUIMapCacheTtlSeconds;
+    }
+
+    public float getClaimUIMapResolutionScale() {
+        return ClaimUIMapResolutionScale;
     }
 }

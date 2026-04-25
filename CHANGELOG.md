@@ -3,6 +3,8 @@
 * Added tamed entity damage event system to prevent tamed entities from being damaged in claimed chunks (with party
   settings), closes #208 closes #121 closes #236 closes #232
 * Added a max world name length in the chunk list GUI
+* Added map asset caching to the claim GUI to improve performance and added scaling to the map to prevent AMD black
+  screen issues
 
 # 1.0.35
 
