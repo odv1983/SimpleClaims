@@ -1,3 +1,7 @@
+# 1.0.37
+
+* Added `TamedEntityRoleIdentifiers` config option to allow customizing tamed entity detection
+
 # 1.0.36
 
 * Added tamed entity damage event system to prevent tamed entities from being damaged in claimed chunks (with party

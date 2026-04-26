@@ -57,6 +57,7 @@ public class SimpleClaimsConfig {
     private boolean EnablePerimeterReservation = false;
     private boolean ShowPerimeterReservationOnTheMap = false;
 
+    private String[] TamedEntityRoleIdentifiers = new String[]{"Tamed_"};
     private String[] BlocksThatIgnoreInteractRestrictions = new String[]{"gravestone"};
 
     public SimpleClaimsConfig() {
@@ -213,6 +214,10 @@ public class SimpleClaimsConfig {
 
     public String[] getBlocksThatIgnoreInteractRestrictions() {
         return BlocksThatIgnoreInteractRestrictions;
+    }
+
+    public String[] getTamedEntityRoleIdentifiers() {
+        return TamedEntityRoleIdentifiers;
     }
 
     public int getMaxPartyMembers() {

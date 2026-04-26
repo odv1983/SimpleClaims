@@ -1,5 +1,6 @@
 package com.buuz135.simpleclaims.systems.events;
 
+import com.buuz135.simpleclaims.Main;
 import com.buuz135.simpleclaims.claim.ClaimManager;
 import com.buuz135.simpleclaims.claim.party.PartyInfo;
 import com.buuz135.simpleclaims.claim.party.PartyOverrides;
@@ -68,11 +69,13 @@ public class TamedEntityDamageEventSystem extends DamageEventSystem {
 
     /**
      * Determines if an NPC role name indicates a tamed/domesticated entity.
-     * Hytale's tamed animal roles all follow the "Tamed_" prefix convention
-     * (e.g. Tamed_Cow, Tamed_Chicken, Tamed_Horse, etc.)
+     * Checks if the role name contains any of the configured identifiers.
      */
     private static boolean isTamedRole(String roleName) {
-        return roleName.startsWith("Tamed_");
+        for (String identifier : Main.CONFIG.get().getTamedEntityRoleIdentifiers()) {
+            if (roleName.contains(identifier)) return true;
+        }
+        return false;
     }
 
     @Nullable
