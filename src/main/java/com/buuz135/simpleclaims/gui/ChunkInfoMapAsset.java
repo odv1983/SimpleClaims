@@ -83,11 +83,10 @@ public class ChunkInfoMapAsset extends CommonAsset {
         }
 
         var generated = ChunkWorldMap.INSTANCE.generate(world, partSize, partSize, chunks).thenApply(map -> {
-            var image = new BufferedImage(
-                    partSize * (maxChunkX - minChunkX + 1),
-                    partSize * (maxChunkZ - minChunkZ + 1),
-                    BufferedImage.TYPE_INT_ARGB
-            );
+            int imageWidth = partSize * (maxChunkX - minChunkX + 1);
+            int imageHeight = partSize * (maxChunkZ - minChunkZ + 1);
+            var image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
+            var finalPixels = new int[imageWidth * imageHeight];
 
             for (int x = minChunkX; x <= maxChunkX; x++) {
                 for (int z = minChunkZ; z <= maxChunkZ; z++) {
@@ -110,17 +109,18 @@ public class ChunkInfoMapAsset extends CommonAsset {
                         int imageX = (x - minChunkX) * partSize;
                         int imageZ = (z - minChunkZ) * partSize;
 
-                        for (var i = 0; i < pixels.length; i++) {
-                            var pixel = pixels[i];
-                            var abgrToArgb = pixel << 24 | (pixel >> 8 & 0x00FFFFFF);
-
-                            var pixelX = i % width;
-                            var pixelY = i / width;
-                            image.setRGB(imageX + pixelX, imageZ + pixelY, abgrToArgb);
+                        int srcIndex = 0;
+                        for (int pixelY = 0; pixelY < height; pixelY++) {
+                            int dstRowIndex = (imageZ + pixelY) * imageWidth + imageX;
+                            for (int pixelX = 0; pixelX < width; pixelX++) {
+                                var pixel = pixels[srcIndex++];
+                                finalPixels[dstRowIndex + pixelX] = pixel << 24 | (pixel >> 8 & 0x00FFFFFF);
+                            }
                         }
                     }
                 }
             }
+            image.setRGB(0, 0, imageWidth, imageHeight, finalPixels, 0, imageWidth);
 
             try {
                 var baos = new ByteArrayOutputStream();
