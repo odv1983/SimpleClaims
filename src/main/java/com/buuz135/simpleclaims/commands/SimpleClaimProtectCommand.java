@@ -74,7 +74,7 @@ public class SimpleClaimProtectCommand extends AbstractAsyncCommand {
                         var mapFuture = ChunkInfoMapAsset.generate(playerRef, chunkX - 8, chunkZ - 8, chunkX + 8, chunkZ + 8);
                         if (mapFuture != null) {
                             mapFuture.thenRunAsync(() ->
-                                player.getPageManager().openCustomPage(ref, store, new ChunkInfoGui(playerRef, player.getWorld().getName(), chunkX, chunkZ, false))
+                                player.getPageManager().openCustomPage(ref, store, new ChunkInfoGui(playerRef, player.getWorld().getName(), chunkX, chunkZ, false, mapFuture))
                             , world);
                             return;
                         }
