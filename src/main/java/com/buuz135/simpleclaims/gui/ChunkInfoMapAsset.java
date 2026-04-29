@@ -176,7 +176,6 @@ public class ChunkInfoMapAsset extends CommonAsset {
         if (CACHE.size() < 128) return;
         CACHE.entrySet().removeIf(entry -> (now - entry.getValue().createdAtMs) > ttlMs);
     }
-
     private record CachedMapAsset(long createdAtMs, CompletableFuture<ChunkInfoMapAsset> asset) {
     }
 }
