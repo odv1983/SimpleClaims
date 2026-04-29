@@ -172,8 +172,6 @@ public class ChunkInfoGui extends InteractiveCustomUIPage<ChunkInfoGui.ChunkInfo
         uiCommandBuilder.set("#ClaimedChunksInfo #MaxChunksCount.Text", playerParty.getMaxClaimAmount() + "");
 
         if (this.mapAsset == null && Main.CONFIG.get().isRenderMapInClaimUI()) {
-            ChunkInfoMapAsset.sendToPlayer(this.playerRef.getPacketHandler(), ChunkInfoMapAsset.empty());
-
             this.mapAsset = ChunkInfoMapAsset.generate(this.playerRef, chunkX - 8, chunkZ - 8, chunkX + 8, chunkZ + 8);
 
             if (this.mapAsset != null) {
